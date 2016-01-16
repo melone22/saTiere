@@ -1,0 +1,13 @@
+.example-orbit-content li div {
+    color: #333;
+    padding: 30px 40px; }
+
+.example-orbit-content li div h1, .example-orbit-content li div h2, .example-orbit-content li div h3 {
+    color: #333;
+}
+.example-orbit-content{
+	color: #333;
+}
+#feature{
+	color: #333;
+}

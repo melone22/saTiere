@@ -1,0 +1,339 @@
+
+
+$font-stack: Helvetica, sans-serif;
+$font-color-weiss: #FFF;
+$font-color-grau: #333;
+$secondary-color-orange: #F3BE13;
+//$secondary-color-blue-alt: #3C99F3; -> Wegen zu geringem Kontrast weggelassen
+$secondary-color-blue: #2f78bf; 
+//$hover-color-alt: #1e4c79;-> Wegen geringem Kontrast weggelassen
+$hover-color: #0e2338;
+$border-d: 20px solid transparent;
+$h1-p: 2%;
+$font-s: 0.9em;
+
+//Farben mixin fuer panels
+@mixin c ($font-c, $font-f){
+  	h1, h2, h3, p {color: $font-c; font-family: $font-f};
+  	h1, h2, h3 {font-weight: 100}
+}
+
+//Panel Eigenschaften mixin
+@mixin p ($panel-bc){
+	border: none;
+ 	background-color: $panel-bc;
+ 	text-align: center;
+ 	padding: 0;
+ 	margin: 0;
+}
+
+//Dreiecke mixins fuer Grundeinstellungen 
+@mixin d ($d_wert){
+	width: $d_wert; 
+	height: $d_wert;
+	padding: $d_wert;
+	margin: $d_wert auto $d_wert auto;
+}
+
+//Mixin fuer Bildergroesse bestimmen wenn bild im %vergroessert oder verkleinert wird ODER es quadratisch ist!
+@mixin b($gr){
+	height: $gr;
+	width: $gr;
+}
+
+//Mixin fuer icon-font 
+@mixin i_f($font-c, $font-g) {
+		color: $font-c;
+		font-size: $font-g;
+}
+
+
+//Klasse fuer blauen Background mit weisser Schrift
+.blau{
+	background-color: $secondary-color-blue;
+	color: #FFF;
+}
+
+//Panel mit weisser Schrift. 
+.panel	{ 
+ 	@include c ($font-color-weiss, $font-stack);
+ 	@include p ($secondary-color-blue);
+
+
+ 		h1 {	padding-top: $h1-p;	
+ 				}
+
+ 		p  {	
+ 				font-size: $font-s;
+ 				}
+
+		span{
+				font-weight: bold;
+			}
+		
+		hr {
+				width: 50%;
+				margin: $h1-p auto 0 auto;
+		}
+		
+}
+
+
+a.dark { 		
+	color: $hover-color
+}
+a.dark:hover{	
+	color: $secondary-color-orange;
+}
+
+
+//Panel zwei mit  Schrift
+.panel2	{ 
+ @include c ($font-color-grau, $font-stack); 
+ @include p ($font-color-weiss);
+
+ 		h1 {	padding-top: $h1-p;
+ 			}
+
+ 		p  {	
+ 				font-size: $font-s;
+
+ 				img {
+ 					height: 70px;
+					width: auto;
+					margin: 10/100 * 70px; //Operator
+					}
+ 			}
+		span{
+				font-weight: bold;
+			}
+		hr {
+				width: 50%;
+				margin: $h1-p auto 0 auto;
+		}
+
+		.spruch{	font-weight: 100; 
+					font-size: 1.2em;
+					color: $secondary-color-blue;}
+}
+//spruch auf contact seite
+.spruch {
+	font-style: italic;
+}
+
+//footer
+.fopa {
+	color: #888;
+	font-size: $font-s;
+	font-family: $font-stack;
+}
+
+footer{
+	width: 100%;
+	height: 8%;
+	text-align: center;
+
+		p  {
+				@extend .fopa;
+
+			}
+		a   {	
+				@extend .fopa;
+				margin-right: 0.5%;
+				margin-left: 0.5%;
+			}
+
+		a:hover {color: $hover-color;}
+
+
+}
+.f_active {color: $hover-color;}
+
+
+
+//klassen fuer icons die von foundation zu verfuegung gestellt werden. 
+.fi-social-facebook, .fi-social-twitter, .fi-social-google-plus, .fi-mail{
+	@include i_f($font-color-weiss, 3em);
+}
+
+//weitere icons
+.fi-first-aid, .fi-laptop, .fi-book {
+	@include i_f($font-color-grau, 8em);
+}
+
+//icons die als link zur navigation auf der seite dienen im hauptmenuepunkt story
+a:hover {
+	.fi-first-aid, .fi-laptop, .fi-book {
+		color: $secondary-color-orange;
+	}
+}
+
+//Dreieck nach unten gerichtet
+.arrow_down{
+	@include d(0);
+	border-left: $border-d;
+	border-right: $border-d;
+	border-top: 20px solid $secondary-color-blue;
+}
+
+
+
+/*Dreieck nach links gerichtet
+.arrow_left{	
+	@include d(0);
+	border-left: 20px solid $secondary-color-blue;
+	border-top: $border-d;
+	border-bottom: $border-d;
+}
+
+//Dreieck nach rechts gerichtet
+.arrow_right{	
+	@include d(0);
+	border-right: 20px solid $secondary-color-blue;
+	border-top: $border-d;
+	border-bottom: $border-d;
+}*/
+
+
+//fuer jQuery effekt
+#erscheinen {
+	display: none;	
+}
+
+
+//Kontakbilder
+.contact-image{
+	@include b(35%);
+	margin-top: 5%;
+	border-radius: 50%;
+}
+
+//Fluegel image
+.fluegel{
+	@include b(30%);
+	padding-top: 5%;
+}
+
+//fuer jQuery effekt auf kontakt seite icon1 und icon2 (dies gilt fuer beide gleich)
+.o{
+	position: absolute;
+	display: none;
+}
+
+//fuer jQuery effekt auf kontakt seite erweiterung icon1 ->alt
+/*.out {
+	@extend .o;
+	margin: 0 auto 0 auto;
+}
+
+//fuer jQuery effekt auf kontakt seite erweiterung icon2 ->alt
+/*.out2 {
+	@extend .o;
+	margin: 20% auto 0 20%;
+}*/
+
+//icons die durch jQuery eingeblendet werden ueber Profilbild von Martina und Marlene ->neu
+#icons_marlene, #icons_martina{
+	@extend .o;
+	margin: 5% auto 0 43%;
+	text-align: center;
+	height: auto;
+	width: auto;
+	z-index: 999;
+}
+
+
+//groesse fuer bilder im slider
+.slider_img{
+	@include b(20%);
+	margin: 0 auto 0 auto;
+	border-radius: 50%;
+}
+
+.character{
+	margin-top: 3%;
+}
+
+//alle buttons zum navigieren formatieren, die zusaetzlich zur topbar auf der website sind
+.small, .radius, .button{
+	background-color: $hover-color;
+}
+
+//formatierung beim darueber fahren mit der maus
+.button:hover{
+	background-color: $secondary-color-orange;
+}
+
+
+//accessible element formatierung: slider mit feedback
+#amount {
+	@extend .blau;
+	text-align: center;
+	border: none;
+	box-shadow: none;
+}
+
+// textarea zum Ideenposten
+.idee{
+	height: 200px;
+	color: $font-color-grau;
+}
+
+//Verlinkungen zur dunklen Seite
+p.boese_links{
+	@extend .blau;
+	font-weight: bold;
+	min-height: 100px;
+	padding: 20/100*100px; //Operators
+	color: $font-color-weiss;
+
+		a {	
+				color: $hover-color;
+			}
+
+		a:hover{
+				color: $secondary-color-orange
+			}
+}
+
+// button zum nach anfang scrollen
+#back-top {
+  	position: fixed;
+  	bottom:20px;
+  	right: 2%;
+  	z-index: 100; 
+}
+
+// fuer accebility 
+#skip a {
+        position:absolute;
+        left:-10000px;
+        top:auto;
+        width:1px;
+        height:1px;
+        overflow:hidden;
+    }
+
+#skip a:focus {
+        position:static;
+        width:auto;
+        height:auto;
+    }
+
+// active fuer dropdown-menue
+    #ac_c, #ac_t, #ac_s{
+    	color: $secondary-color-blue;
+    }
+
+//Thumbnails auf der about seite
+.th {
+	border-width: 2px;
+}
+
+.cont {
+	height: 50px;
+	width: 50px;
+	z-index: 100;
+}
+   
+
